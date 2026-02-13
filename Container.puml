@@ -10,12 +10,12 @@ Person(maintainer, "System Maintainer", "Handles Production Development and Main
 
 ' The Ext Systems
 ' System_Ext(alias, label, ?descr, ?sprite, ?tags, ?link, ?type, ?baseShape)
-System_Ext(blockchain, "AI verification Service", "")
-System_Ext(phone_dev, "", "Current weather information in Finland")
-System_Ext(suomifi, "Suomi.fi", "National strong authentication service provider")
+System_Ext(blockchain, "Blockchain", "")
+System_Ext(phone_dev, "Phone Device", "Users own mobile phone")
+System_Ext(suomifi, "Suomi.fi", "National strong authentication service handler")
 
 ' Boundary(alias, label, ?type, ?tags, ?link, ?descr)
-Boundary(useless_auth, "SSI/SSO Face-ID Authentication", "Software System", "", "", "System that can provide strong authentication based on Face Recognition in decentralized manner by utilizing blockchain with AI.") {
+Boundary(useless_auth, "SSI/SSO Face-ID Authentication", "Software System", "", "", "System that can provide a strong authentication based on Face Recognition in decentralized manner by utilizing blockchain with AI.") {
     Container(backend, "Server", "JSON/HTTPS", "Handles database access for users and makes API calls to external systems.")
     Container(phoneapp, "Phone Application", "HTTPS", "Runs on users mobile phone device")
     Container(database, "Database", "", "Holds users blockchains first node. ")
@@ -25,10 +25,13 @@ Boundary(useless_auth, "SSI/SSO Face-ID Authentication", "Software System", "", 
 }
 
 ' Rel($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="", $index="", $rel="")
-Rel(citizens, phoneapp, "Authenticates using", "")
 Rel(maintainer, backend, "Maintains")
-Rel(backend, suomifi, "Provides proof of authentication")
+Rel(citizens, phone_dev, "Has a")
+Rel(phone_dev, backend, "Connects to", "")
+Rel(backend, suomifi, "Provides the users' eID to")
+Rel(backend, blockchain, "Checks users")
 
 SHOW_LEGEND()
 
 @enduml
+
