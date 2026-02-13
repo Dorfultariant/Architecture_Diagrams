@@ -27,7 +27,8 @@ Boundary(useless_auth, "SSI/SSO Face-ID Authentication", "Software System", "", 
 ' Rel($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="", $index="", $rel="")
 Rel(maintainer, backend, "Maintains")
 Rel(citizens, phone_dev, "Has a")
-Rel(phone_dev, backend, "Connects to", "")
+Rel(phone_dev, phoneapp, "runs the", "")
+Rel(phoneapp, backend, "Connects to", "")
 Rel(backend, suomifi, "Provides the users' eID to")
 Rel(backend, blockchain, "Checks users")
 
