@@ -7,7 +7,7 @@ Person_Ext(personCitizen, "Citizen")
 Person_Ext(personAdmin, "Administrator")
 System_Ext(externalIDIssuer, "ID issuer system", "3rd party system")
 System_Ext(externalMobile, "Mobile device", "3rd party system")
-System_Ext(externalWeb, "Web brovser", "3rd party system")
+System_Ext(externalWeb, "Web browser", "3rd party system")
 System_Ext(externalPA, "Public administrator / Service provider", "3rd party system")
 System_Ext(externalDLT, "Blockchain DLT")
 
