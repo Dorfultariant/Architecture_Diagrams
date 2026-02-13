@@ -2,9 +2,9 @@
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
 
-System(systemCore, "SSI Core System")
-Person_Ext(personCitizen, "Citizen")
-Person_Ext(personAdmin, "Administrator")
+System(systemCore, "SSI/SSO Face-ID Authentication")
+Person(personCitizen, "Citizen")
+Person(personAdmin, "Administrator")
 System_Ext(externalIDIssuer, "ID issuer system", "3rd party system")
 System_Ext(externalMobile, "Mobile device", "3rd party system")
 System_Ext(externalWeb, "Web browser", "3rd party system")
@@ -20,7 +20,7 @@ Rel(systemCore, externalIDIssuer, "Request ID verification")
 Rel(systemCore, externalMobile, "Store created unique user's VC")
 Rel(systemCore, externalDLT, "Store users' public key and verify credentials")
 
-Rel_L(externalMobile, externalPA, "Initiate authentication process")
+' Rel_L(externalMobile, externalPA, "Initiate authentication process")
 Rel(externalMobile, systemCore, "Provide biometric image and VC")
 
 Rel(externalWeb, externalPA, "Initiate authentication process")
