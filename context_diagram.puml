@@ -1,4 +1,4 @@
-@startuml contex_diagram
+@startuml ContextDiagram
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
 

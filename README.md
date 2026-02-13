@@ -12,7 +12,7 @@ https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml
 
 **Context**
 
-![Context Diagram]()
+![Context Diagram](images/ContextDiagram.png)
 
 
 
