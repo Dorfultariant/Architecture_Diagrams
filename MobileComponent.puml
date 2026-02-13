@@ -1,0 +1,26 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+
+Boundary(mobile_dev, "Mobile Application", "client-side System", "", "", "Citizen's own device that they wish to use to authenticate with our ") {
+
+    Component(RH, "Request Handler")
+    Component(Backend_API, "Backend API handler") 
+    Component(Blockchain)
+    Component(Biometric_AI, "Biometric AI") 
+    Component(eID)
+    Component(AAh, "Alternative Authentication handler")
+
+    Rel(RH, Backend_API, "Sends data from Blockchain")
+    Rel(Backend_API, RH, "Asks authentication")
+    Rel(Blockchain, eID, "holds")
+    Rel(RH, Biometric_AI, "Asks Biometric authentication")
+    Rel(Biometric_AI, RH, "allows or denies access")
+    Rel_R(RH, Blockchain, "Reads blockchain for eID")
+    Rel(RH, AAh, "Asks authentication from other services")
+    Rel(AA, RH, "Authentication")
+}
+
+SHOW_LEGEND()
+
+@enduml
