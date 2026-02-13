@@ -6,19 +6,19 @@ Boundary(mobile_dev, "Mobile Application", "client-side System", "", "", "Citize
 
     Component(RH, "Request Handler")
     Component(Backend_API, "Backend API handler") 
-    Component(Blockchain)
+    Component(Blockchain, "Blockchain")
     Component(Biometric_AI, "Biometric AI") 
-    Component(eID)
+    Component(eID, "Electronic ID")
     Component(AAh, "Alternative Authentication handler")
 
     Rel(RH, Backend_API, "Sends data from Blockchain")
     Rel(Backend_API, RH, "Asks authentication")
     Rel(Blockchain, eID, "holds")
     Rel(RH, Biometric_AI, "Asks Biometric authentication")
-    Rel(Biometric_AI, RH, "allows or denies access")
-    Rel_R(RH, Blockchain, "Reads blockchain for eID")
+    Rel(Biometric_AI, RH, "responds authentication result")
+    Rel_R(RH, Blockchain, "Reads eID from")
     Rel(RH, AAh, "Asks authentication from other services")
-    Rel(AA, RH, "Authentication")
+    Rel(AAh, RH, "Authentication")
 }
 
 SHOW_LEGEND()
