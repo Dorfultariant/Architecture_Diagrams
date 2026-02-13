@@ -1,0 +1,31 @@
+@startuml contex_diagram
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+
+System(systemCore, "SSI Core System")
+Person_Ext(personCitizen, "Citizen")
+Person_Ext(personAdmin, "Administrator")
+System_Ext(externalIDIssuer, "ID issuer system", "3rd party system")
+System_Ext(externalMobile, "Mobile device", "3rd party system")
+System_Ext(externalWeb, "Web browser", "3rd party system")
+System_Ext(externalPA, "Public administrator / Service provider", "3rd party system")
+System_Ext(externalDLT, "Blockchain DLT")
+
+Rel(personAdmin, systemCore, "Administer and manage the system")
+
+Rel(personCitizen, externalMobile, "Use to authenticate and access PA services")
+Rel(personCitizen, externalWeb, "Use to access PA services")
+
+Rel(systemCore, externalIDIssuer, "Request ID verification")
+Rel(systemCore, externalMobile, "Store created unique user's VC")
+Rel(systemCore, externalDLT, "Store users' public key and verify credentials")
+
+Rel_L(externalMobile, externalPA, "Initiate authentication process")
+Rel(externalMobile, systemCore, "Provide biometric image and VC")
+
+Rel(externalWeb, externalPA, "Initiate authentication process")
+
+Rel(externalPA, systemCore, "Request authentication")
+
+
+@enduml
