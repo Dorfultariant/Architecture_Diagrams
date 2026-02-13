@@ -4,6 +4,6 @@ To be able to generate the diagrams, you will need the PlantUML https://github.c
 
 Naturally, you will need plantuml binary.
 
-Apparently there exists a vscode extension that provides preview functionality so you can see what you are doing.
-
+Apparently there exists a vscode extension that provides preview functionality so you can see what you are doing. 
+https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml
 
