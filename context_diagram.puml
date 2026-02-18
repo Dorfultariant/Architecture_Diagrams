@@ -17,7 +17,7 @@ Rel(personCitizen, externalMobile, "authenticates using")
 Rel(personCitizen, externalWeb, "accesses PA services with")
 
 Rel(systemCore, externalIDIssuer, "request government ID verification")
-Rel(systemCore, externalDLT, "store users' public key")
+Rel(systemCore, externalDLT, "accesses users public key from")
 
 Rel(externalMobile, systemCore, "runs the")
 

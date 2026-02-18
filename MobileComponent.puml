@@ -1,21 +1,20 @@
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
-Container(backend, "Server", "JSON/HTTPS", "Handles database access for users and makes API calls to external systems.")
+Container(backend, "Server", "JSON/HTTPS", "Handles API calls and data flow between different systems.")
 
-Boundary(mobile_dev, "Mobile Application", "client-side System", "", "", "Citizen's own device that they wish to use to authenticate with our ") {
+' Boundary(alias, label, ?type, ?tags, ?link, ?descr)
+Boundary(mobile_dev, "Mobile Application", "client-side System", "", "", "Handles users data on the device and identifies user using AI model.") {
 
     'Component(alias, label, ?techn, ?descr, ?sprite, ?tags, ?link, ?baseShape)
     Component(RH, "Request Handler", "", "Acts as applications internal data router")
     Component(Backend_API, "Backend API handler", "", "Handles communication between Mobile App and Backend server") 
-    Component(Blockchain, "Blockchain")
-    Component(Biometric_AI, "Biometric AI", "", "Runs the AI Model that identifies user by real-time video")
-    Component(eID, "Electronic ID")
+    Component(Biometric_AI, "Biometric AI", "", "Runs the AI Model that identifies user with real-time video")
+    Component(enc_fs, "Encrypted Storage Handler", "", "Used to store users private information, private key, VC and metadata securely on the device.")
 
     Rel(RH, Backend_API, "routes data for")
-    Rel(Blockchain, eID, "holds")
     Rel(RH, Biometric_AI, "makes request for identification to")
-    Rel_R(RH, Blockchain, "gets eID from")
+    Rel(RH, enc_fs, "requests data access from")
     Rel(Backend_API, backend, "communicates with")
 }
 
