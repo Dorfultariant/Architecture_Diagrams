@@ -1,24 +1,22 @@
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
+Container(backend, "Server", "JSON/HTTPS", "Handles database access for users and makes API calls to external systems.")
 
 Boundary(mobile_dev, "Mobile Application", "client-side System", "", "", "Citizen's own device that they wish to use to authenticate with our ") {
 
-    Component(RH, "Request Handler")
-    Component(Backend_API, "Backend API handler") 
+    'Component(alias, label, ?techn, ?descr, ?sprite, ?tags, ?link, ?baseShape)
+    Component(RH, "Request Handler", "", "Acts as applications internal data router")
+    Component(Backend_API, "Backend API handler", "", "Handles communication between Mobile App and Backend server") 
     Component(Blockchain, "Blockchain")
-    Component(Biometric_AI, "Biometric AI") 
+    Component(Biometric_AI, "Biometric AI", "", "Runs the AI Model that identifies user by real-time video")
     Component(eID, "Electronic ID")
-    Component(AAh, "Alternative Authentication handler")
 
-    Rel(RH, Backend_API, "Sends data from Blockchain")
-    Rel(Backend_API, RH, "Asks authentication")
+    Rel(RH, Backend_API, "routes data for")
     Rel(Blockchain, eID, "holds")
-    Rel(RH, Biometric_AI, "Asks Biometric authentication")
-    Rel(Biometric_AI, RH, "responds authentication result")
-    Rel_R(RH, Blockchain, "Reads eID from")
-    Rel(RH, AAh, "Asks authentication from other services")
-    Rel(AAh, RH, "Authentication")
+    Rel(RH, Biometric_AI, "makes request for identification to")
+    Rel_R(RH, Blockchain, "gets eID from")
+    Rel(Backend_API, backend, "communicates with")
 }
 
 SHOW_LEGEND()

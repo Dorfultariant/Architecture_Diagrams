@@ -1,31 +1,29 @@
 @startuml ContextDiagram
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-
-System(systemCore, "SSI/SSO Face-ID Authentication")
+System(systemCore, "SSI/SSO Biometric Authenticator")
 Person(personCitizen, "Citizen")
-Person(personAdmin, "Administrator")
-System_Ext(externalIDIssuer, "ID issuer system", "3rd party system")
-System_Ext(externalMobile, "Mobile device", "3rd party system")
-System_Ext(externalWeb, "Web browser", "3rd party system")
-System_Ext(externalPA, "Public administrator / Service provider", "3rd party system")
-System_Ext(externalDLT, "Blockchain DLT")
+Person(personAdmin, "System Maintainer", "Handles Production Development and Maintenance")
 
-Rel(personAdmin, systemCore, "Administer and manage the system")
+' System_Ext(alias, label, ?descr, ?sprite, ?tags, ?link, ?type, ?baseShape)
+System_Ext(externalIDIssuer, 	"Governments ID Verification Service", "Verifies the users Social Security Number", "3rd party system")
+System_Ext(externalMobile,   	"Mobile device", "Stores VC and Biometric data", "3rd party system")
+System_Ext(externalWeb,      	"Web browser", "Used to access PA service", "3rd party system")
+System_Ext(externalPA, 		"Public Administrator / Service Provider", "The service user wants to login to.", "3rd party system")
+System_Ext(externalDLT, 	"Blockchain DLT", "Stores users public key")
 
-Rel(personCitizen, externalMobile, "Use to authenticate and access PA services")
-Rel(personCitizen, externalWeb, "Use to access PA services")
+Rel(personAdmin, systemCore, "administer and manage the system")
+Rel(personCitizen, externalMobile, "authenticates using")
+Rel(personCitizen, externalWeb, "accesses PA services with")
 
-Rel(systemCore, externalIDIssuer, "Request ID verification")
-Rel(systemCore, externalMobile, "Store created unique user's VC")
-Rel(systemCore, externalDLT, "Store users' public key and verify credentials")
+Rel(systemCore, externalIDIssuer, "request government ID verification")
+Rel(systemCore, externalDLT, "store users' public key")
 
-' Rel_L(externalMobile, externalPA, "Initiate authentication process")
-Rel(externalMobile, systemCore, "Provide biometric image and VC")
+Rel(externalMobile, systemCore, "runs the")
 
-Rel(externalWeb, externalPA, "Initiate authentication process")
+Rel(externalWeb, externalPA, "initiate authentication process with")
 
-Rel(externalPA, systemCore, "Request authentication")
+Rel(externalPA, systemCore, "makes request for authentication to")
 
 SHOW_LEGEND()
 
