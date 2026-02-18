@@ -27,5 +27,6 @@ Rel(externalWeb, externalPA, "Initiate authentication process")
 
 Rel(externalPA, systemCore, "Request authentication")
 
+SHOW_LEGEND()
 
 @enduml
