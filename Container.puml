@@ -32,7 +32,7 @@ Rel(web_browser, ext_pa, "initiate authentication process with")
 Rel(ext_pa, backend, "makes request for authentication to")
 Rel(phone_dev, phoneapp, "runs the", "")
 Rel(backend, govidservice, "makes request for SSN verification to")
-Rel(backend, blockchain, "fetches users public key from")
+Rel(backend, blockchain, "accesses users public key from")
 
 SHOW_LEGEND()
 

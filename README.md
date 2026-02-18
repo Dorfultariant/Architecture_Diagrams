@@ -24,13 +24,9 @@ https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml
 
 
 
-### C3 Diagrams:
+### C3 Diagram:
 
-
-**Backend**
-
-![Backend Diagram](images/BackendComponent.png)
-
+**Component**
 
 **Mobile Application**
 
