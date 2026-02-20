@@ -1,27 +1,29 @@
 @startuml ContextDiagram
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-System(systemCore, "SSI/SSO Biometric Authenticator")
+System(systemCore, "SSI/SSO Biometric Authenticator", "Runs on the users mobile device and handles users private information.")
 Person(personCitizen, "Citizen")
 Person(personAdmin, "System Maintainer", "Handles Production Development and Maintenance")
 
 ' System_Ext(alias, label, ?descr, ?sprite, ?tags, ?link, ?type, ?baseShape)
 System_Ext(externalIDIssuer, 	"Governments ID Verification Service", "Verifies the users Social Security Number", "3rd party system")
-System_Ext(externalMobile,   	"Mobile device", "Stores VC and Biometric data", "3rd party system")
-System_Ext(externalWeb,      	"Web browser", "Used to access PA service", "3rd party system")
+' System_Ext(externalMobile,   	"Mobile device", "Stores VC and Biometric data", "3rd party system")
+' System_Ext(externalWeb,      	"Web browser", "Used to access PA service", "3rd party system")
 System_Ext(externalPA, 		"Public Administrator / Service Provider", "The service user wants to login to.", "3rd party system")
 System_Ext(externalDLT, 	"Blockchain DLT", "Stores users public key")
 
 Rel(personAdmin, systemCore, "administer and manage the system")
-Rel(personCitizen, externalMobile, "authenticates using")
-Rel(personCitizen, externalWeb, "accesses PA services with")
+' Rel(personCitizen, externalMobile, "authenticates using")
+Rel(personCitizen, externalPA, "wants to login to")
+' Rel(personCitizen, externalWeb, "accesses PA services with")
 
 Rel(systemCore, externalIDIssuer, "request government ID verification")
 Rel(systemCore, externalDLT, "accesses users public key from")
 
-Rel(externalMobile, systemCore, "runs the")
+' Rel(externalMobile, systemCore, "runs the")
+Rel(personCitizen, systemCore, "authenticates using")
 
-Rel(externalWeb, externalPA, "initiate authentication process with")
+' Rel(externalWeb, externalPA, "initiate authentication process with")
 
 Rel(externalPA, systemCore, "makes request for authentication to")
 
