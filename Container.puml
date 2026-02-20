@@ -11,27 +11,29 @@ Person(maintainer, "System Maintainer", "Handles Production Development and Main
 ' The Ext Systems
 ' System_Ext(alias, label, ?descr, ?sprite, ?tags, ?link, ?type, ?baseShape)
 System_Ext(blockchain, "Blockchain DLT", "Stores users Public Key and unique identifier.")
-System_Ext(web_browser, "Web Browser", "", "3rd party system")
-System_Ext(phone_dev, "Mobile Device", "Users own mobile phone with front camera", "3rd party system")
-System_Ext(ext_pa, "Public Administrator / Service Provider", "The service user wants to login to.", "3rd party system")
+' System_Ext(web_browser, "Web Browser", "", "3rd party system")
+' System_Ext(phone_dev, "Mobile Device", "Users own mobile phone with front camera", "3rd party system")
+System_Ext(ext_pa, "Public Administrator / Service Provider", "Public service the user wants to login to. ", "3rd party system")
 System_Ext(govidservice, "Government ID Verification Service", "Verifies the users Social Security Number", "3rd party system")
 
 ' Boundary(alias, label, ?type, ?tags, ?link, ?descr)
 Boundary(useless_auth, "SSI/SSO Biometric Authenticator", "Software System", "", "", "System that can provide a strong authentication based on Face Recognition in decentralized manner by utilizing blockchain with AI.") {
     Container(backend, "Server", "JSON/HTTPS", "Handles API calls and data flow between different systems.")
+    Container(frontend, "Front-end", "JSON/HTTPS", "Provides the login screen for user to use during authentication.")
     Container(db, "Database", "", "Stores revoked keys")
     Container(phoneapp, "Mobile Application", "HTTPS", "Handles on-device data for user. Private Key, VCs private information. Runs the AI model used for identification.")
     
     Rel(backend, phoneapp, "makes challenges and communicates with")
+    Rel(backend, frontend, "Redirects user to login screen, initiating authentication process.")
 }
 
 ' Rel($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="", $index="", $rel="")
 Rel(maintainer, useless_auth, "administer and manage the system")
-Rel(citizens, phone_dev, "authenticates using")
-Rel(citizens, web_browser, "accesses PA service with")
-Rel(web_browser, ext_pa, "initiate authentication process with")
+Rel(citizens, phoneapp, "authenticates using")
+Rel(citizens, ext_pa, "wants to login to")
+' Rel(web_browser, ext_pa, "initiate authentication process with")
 Rel(ext_pa, backend, "makes request for authentication to")
-Rel(phone_dev, phoneapp, "runs the", "")
+' Rel(phone_dev, phoneapp, "runs the", "")
 Rel(backend, govidservice, "makes request for SSN verification to")
 Rel(backend, blockchain, "accesses users public key from")
 Rel(backend, db, "checks revoked key status from")
