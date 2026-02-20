@@ -1,24 +1,25 @@
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
-Boundary(backend, "Backend server", "Backend System", "", "", "Server that handles data transfer between devices and other services") {
-    
-    Component(RH, "Request Handler") 
-    Component(Backend_API, "Other services API handler") 
-    Component(Blockchain, "Blockchain")
-    Component(Biometric_AI, "User authentication API handler")  
-    Component(eID, "User blockchain information") 
-    Component(DB, "Database") 
+System_Ext(bc, "Blockchain")
+System_Ext(ma, "Mobile Application")
+System_Ext(pa, "Public Administrator / Service Provider")
 
-    Rel(RH, Backend_API, "Sends authentication comfirmation")
-    Rel_L(Backend_API, RH, "Asks authentication")
-    Rel(Blockchain, eID, "holds")
-    Rel(RH, Biometric_AI, "Asks Biometric authentication")
-    Rel(Biometric_AI, RH, "allows or denies access")
-    Rel_R(RH, DB, "Asks database for user's blockchain identification information")
-    Rel(DB, RH, "Returns query")
-    Rel(DB, Blockchain, "Queries for correct blockchain piece")
-    Rel(Blockchain, DB, "User's blockchain identification information")
+Boundary(backend, "Server", "Backend System", "", "", "Server that handles data transfer between systems.") {
+  ' Component(alias, label, ?techn, ?descr, ?sprite, ?tags, ?link, ?baseShape)
+    Component(RH, "Request Handler") 
+    Component(challenger, "Challenge Generator") 
+    Component(ext_api, "External API", "", "Provide PAs the API for communication with internal system.") 
+    Component(resolver, "DID Resolver", "", "Resolves users DID to correct Public Key in blockchain.") 
+    Component(DB, "Database", "PostgreSQL", "Stores revoked keys.") 
+
+    Rel(RH, challenger, "generates a challenge using")
+    Rel(ext_api, RH, "redirects data to")
+    Rel_U(pa,ext_api, "communicates with")
+    Rel(RH, ma, "communication with")
+    Rel_U(RH, DB, "checks for revoked keys from")
+    Rel_R(RH, resolver, "requests public key from")
+    Rel(resolver, bc, "queries for correct blockchain piece")
 }
 
 SHOW_LEGEND()
