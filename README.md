@@ -44,4 +44,9 @@ https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml
 ![Authentication Seq Diagram](images/Authentication.png)
 
 
+### VC Creation "Data Flow":
+
+![VC Creation](images/DataFlowDiagram.png)
+
+
 
