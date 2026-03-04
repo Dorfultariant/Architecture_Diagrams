@@ -1,0 +1,24 @@
+@startuml
+
+Actor "Finnish\nCitizen" as c
+Participant "Mobile App" as m
+Participant Backend as b
+Participant Blockchain as bc 
+Participant "Public\nAdministrator" as p
+
+c -> p: Login Request with DID
+p -> b: Redirect Request\nto Server Backend
+b -> bc: Query with DID
+bc --> b: Responds Public Key
+b -> m: Sends a Challenge
+m -> c: Ask Identification
+c --> m: Provide Biometric\n Identification
+m -> m: AI Model \nIdentification Matching
+m --> b: Respond Identification \nResult
+b -> b: Compares Signed \nChallenge
+b --> p: Respond Authentication \nResult
+p --> c: Provide Access \nBased on Result
+
+
+@enduml
+
