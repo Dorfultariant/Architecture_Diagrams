@@ -28,7 +28,20 @@ https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml
 
 **Component**
 
+**Backend**
+
+![Backend Component](images/BackendComponent.png)
+
+
 **Mobile Application**
 
 ![Mobile Diagram](images/MobileComponent.png)
+
+
+
+### Authentication Sequence:
+
+![Authentication Seq Diagram](images/Authentication.png)
+
+
 
