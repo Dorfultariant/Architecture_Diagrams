@@ -1,0 +1,42 @@
+
+@startuml
+
+|Citizen|
+start
+:VC Creation;
+
+|#pink|Mobile App|
+:Capture photo/video\nand enter PIC;
+
+|#lightgray|Backend|
+:Forward data to\nFinnish PIC Service;
+
+|#white|Finnish PIC Service|
+if (PIC valid?) then (yes)
+  |#lightgray|Backend|
+  :Generate unique DID;
+  |#pink|Mobile App|
+  :Return DID;\nPrompt user to create keypair;
+  :Create asymmetric keypair;
+  |#lightyellow|Blockchain|
+  :Register DID and\npublic key on-chain;
+else (no)
+  |#lightgray|Backend|
+  :Return verification error\n;
+  |#pink|Mobile App|
+  :Show verification error to user;
+    stop
+endif
+
+
+|#lightgreen|Citizen|
+:Receive confirmation;
+
+stop
+
+legend right
+Personal Identity Code (PIC)
+DID = Decentralized Identifier
+endlegend
+@enduml
+
