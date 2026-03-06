@@ -35,7 +35,7 @@ endif
 stop
 
 legend right
-Personal Identity Code (PIC)
+PIC = Personal Identity Code
 DID = Decentralized Identifier
 endlegend
 @enduml
