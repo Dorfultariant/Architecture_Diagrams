@@ -20,7 +20,7 @@ System_Ext(govidservice, "Government ID Verification Service", "Verifies the use
 Boundary(useless_auth, "SSI/SSO Biometric Authenticator", "Software System", "", "", "System that can provide a strong authentication based on Face Recognition in decentralized manner by utilizing blockchain with AI.") {
     Container(backend, "Server", "JSON/HTTPS", "Handles API calls and data flow between different systems.")
     Container(frontend, "Front-end", "JSON/HTTPS", "Provides the login screen for user to use during authentication.")
-    Container(db, "Database", "", "Stores revoked keys")
+    Container(db, "Database", "", "Stores revoked keys and audit logs.")
     Container(phoneapp, "Mobile Application", "HTTPS", "Handles on-device data for user. Private Key, VCs private information. Runs the AI model used for identification.")
     
     Rel(backend, phoneapp, "makes challenges and communicates with")

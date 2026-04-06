@@ -11,9 +11,11 @@ Boundary(backend, "Server", "Backend System", "", "", "Server that handles data 
     Component(challenger, "Challenge Generator") 
     Component(ext_api, "External API", "", "Provide PAs the API for communication with internal system.") 
     Component(resolver, "DID Resolver", "", "Resolves users DID to correct Public Key in blockchain.") 
-    Component(DB, "Database", "PostgreSQL", "Stores revoked keys.") 
+    Component(DB, "Database", "PostgreSQL", "Stores revoked keys and audit logs.") 
+    Component(at, "Audit Logger", "", "Handles the read and write operations of audit logging data for transactions.") 
 
     Rel(RH, challenger, "generates a challenge using")
+    Rel(at, RH, "collects and parses logs through")
     Rel(ext_api, RH, "redirects data to")
     Rel_U(pa,ext_api, "communicates with")
     Rel(RH, ma, "communication with")
