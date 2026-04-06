@@ -4,6 +4,7 @@
 System_Ext(bc, "Blockchain")
 System_Ext(ma, "Mobile Application")
 System_Ext(pa, "Public Administrator / Service Provider")
+System_Ext(lb, "Load Balancer")
 
 Boundary(backend, "Server", "Backend System", "", "", "Server that handles data transfer between systems.") {
   ' Component(alias, label, ?techn, ?descr, ?sprite, ?tags, ?link, ?baseShape)
@@ -17,7 +18,8 @@ Boundary(backend, "Server", "Backend System", "", "", "Server that handles data 
     Rel(RH, challenger, "generates a challenge using")
     Rel(at, RH, "collects and parses logs through")
     Rel(ext_api, RH, "redirects data to")
-    Rel_U(pa,ext_api, "communicates with")
+    Rel_U(pa, lb, "connects with")
+    Rel_U(lb, ext_api, "routes to server instance")
     Rel(RH, ma, "communication with")
     Rel_U(RH, DB, "checks for revoked keys from")
     Rel_R(RH, resolver, "requests public key from")

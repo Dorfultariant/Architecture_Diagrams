@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" version="29.6.6">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36">
   <diagram name="Page-1" id="Xg3kea-ZZsZcuGVrTdBq">
-    <mxGraphModel dx="1715" dy="961" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1118" dy="1441" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -84,7 +84,7 @@
           <mxGeometry height="30" width="130" x="180" y="380" as="geometry" />
         </mxCell>
         <mxCell id="pqkmer9AvpxOEG1Hog6P-591" parent="1" style="whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;align=left;" value="FR-008&amp;nbsp;&lt;div&gt;(AI model) &lt;/div&gt;" vertex="1">
-          <mxGeometry height="40" width="120" x="180" y="515" as="geometry" />
+          <mxGeometry height="40" width="120" x="180" y="545" as="geometry" />
         </mxCell>
         <mxCell id="WHKBWEV9og0GEgp1cG4i-8" edge="1" parent="1" source="pqkmer9AvpxOEG1Hog6P-595" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="pqkmer9AvpxOEG1Hog6P-569">
           <mxGeometry relative="1" as="geometry">
@@ -95,7 +95,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="pqkmer9AvpxOEG1Hog6P-595" parent="1" style="whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;align=left;" value="FR-010 (Authentication&amp;nbsp;&lt;div&gt;across required PAs) &lt;/div&gt;" vertex="1">
-          <mxGeometry height="35" width="140" x="180" y="570" as="geometry" />
+          <mxGeometry height="35" width="140" x="180" y="600" as="geometry" />
         </mxCell>
         <mxCell id="pqkmer9AvpxOEG1Hog6P-598" parent="1" style="whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;align=left;" value="FR-011&amp;nbsp;&lt;div&gt;(Access to personal data) &lt;/div&gt;" vertex="1">
           <mxGeometry height="35" width="150" x="950" y="365" as="geometry" />
@@ -186,6 +186,12 @@
         </mxCell>
         <mxCell id="WHKBWEV9og0GEgp1cG4i-14" parent="1" style="whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;align=left;" value=" QA-001 (Accuracy)" vertex="1">
           <mxGeometry height="30" width="140" x="180" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="QFM_bDO3GdlNOYjyXJNz-1" parent="1" style="whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;align=left;" value=" QA-003 (Auditability)" vertex="1">
+          <mxGeometry height="30" width="140" x="180" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="QFM_bDO3GdlNOYjyXJNz-2" parent="1" style="whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;align=left;" value="FR-014&amp;nbsp;&lt;div&gt;(Audit logger service) &lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="130" x="690" y="630" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
