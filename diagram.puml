@@ -1,0 +1,105 @@
+@startuml
+
+package "SSI/SSO Biometric Authentication System" {
+    cloud "Cloud servers" as ba{
+        node lbs [
+            Load Balancer Server
+            OS: Ubuntu Server 22.04 LTS
+            CPU: 4 vCPU (Intel Xeon)
+            RAM: 4 GB 
+            Disk: 8 GB SSD
+            Runtime: Node.js 20 LTS, Nginx
+        ]
+        node lbs{
+            artifact "Load Balancer" as lb
+        }
+        
+        node bs [
+            Backend Server
+            OS: Arch 6.18.21-1 LTS (containerised)
+            CPU: 16 vCPU (auto-scale)
+            Runtime: Go, Docker
+            RAM: 32 GB
+            Disk: 2 TB NVMe
+        ]
+        node bs {
+            artifact "Server Executable"
+        }
+
+
+        database "Database" as db
+    }
+    node md [
+        Mobile Devices
+        OS: Android 12+ / iOS 16+
+        CPU: ARM Cortex-A55, 2.0 GHz+
+        RAM: 2 GB
+        Storage: 16 GB
+        Sensors: Camera (12 MP+), Secure Enclave
+    ]
+    node md {
+        artifact "Mobile App" as ma {
+            artifact "Biometric AI"
+            artifact "Mobile Executable"
+        }
+        file "VC Wallet" as vw
+    }
+
+    node "DLT Server Network" {
+        node "Blockchain" as bc
+    }
+}
+
+node "PA Service" as pa {
+    artifact "SSO Interface" as ap
+}
+
+lb -(0)- bs : data redirection
+
+lb -(0)- ap : confirmation (REST)
+bs -(0)- db : query
+lb -(0)- ma : mobile to server (REST) 
+bc -do(0)- bs : append / read 
+vw -(0)- ma : reads/writes file 
+
+<style>
+    legend
+    {
+        FontColor black
+    }
+    artifact 
+    {
+        BackgroundColor #f57ed1
+    }
+    cloud {
+        BackgroundColor #f1d8a3
+    }
+    file {
+        BackgroundColor #a3abf1
+    }
+    database {
+        BackgroundColor #bfeeee
+    }
+    package {
+        BackgroundColor #afafaf
+    }
+    node {
+        BackgroundColor #eec8bf
+    }
+</style> 
+
+legend 
+    The LEGEND
+
+    | <#f57ed1> | Artifact |
+    | <#a3abf1> | File |
+    | <#eec8bf> | Node |
+    | <#f1d8a3> | Cloud |
+    | <#bfeeee> | Database |
+    | <#afafaf> | Package |
+    | -(0)- | Connection |
+
+endlegend
+
+
+@enduml

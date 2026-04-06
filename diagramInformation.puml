@@ -1,0 +1,112 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Boundary(boundary, "Internal system") {
+
+    component "Request Handler" as rh
+    component "DID Resolver" as did
+    component "External API" as api
+    component "Challenge Generator" as cg
+    
+
+    component "Database" as db
+
+
+    component "Request Handler (Mobile)" as md
+    component "Backend API Handler" as bapi
+    
+    component "Load Balancer" as lb
+    component Blockchain as bc
+
+    interface "Request Handler (REST)" as rhr
+    interface "Query API (RMC)" as rhq 
+    interface "Request Handler API (RMC)" as rhc
+
+    interface "Load Balancer API (REST)" as lbc 
+
+    interface "Database API (TCP)" as dbc
+
+    interface "Challenge Generator (RMC)" as cgc
+
+    interface "Blockchain API (HTTPs)" as bcc
+
+    interface "DID API (REST)" as dida
+
+    interface "Mobile API (REST)" as mdc
+}
+
+
+
+component "PA Administrator" as pa
+interface "PA API (REST)" as pap
+
+component "Government ID Verification Service" as tp
+interface "GID API (REST)" as tpa 
+
+
+rh -- rhr 
+rh -- rhq
+rh -- rhc
+
+lbc -- lb
+
+dbc -- db
+
+cgc -- cg
+
+pap -- pa
+
+bc -- bcc
+
+did -- dida
+
+tpa -- tp
+
+mdc -- md
+
+rhq <.. db : blockchain information
+rh .up.> dbc : query for user's blockchain part
+
+bapi ..> rhc : registaration 
+api ..> rhc : giving request to handle
+rhc <.. bc : user information
+
+pa ..> lbc : identification confirmation (REST)
+lb ..> rhr : redirected request 
+
+rh ..> cgc : request for VC challenge
+rh ..> pap : ask for identification
+rh ..> bcc : search for user 
+
+
+
+dida <-. md : VC 
+ 
+
+cg ..> mdc : VC challenge
+did ..> tpa : confirmation 
+
+
+<style>
+    legend
+    {
+        FontColor black
+    }
+    interface 
+    {
+        BackgroundColor #a6f1a3
+    }
+</style> 
+
+legend 
+    The LEGEND
+
+    | <#a6f1a3>| Interface |
+    | <#f1f1f1> | Component |
+    | <-- | Connection |
+    | --- | Boundary |
+
+endlegend
+
+
+@enduml

@@ -1,0 +1,46 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+' User(s) of the system
+' Person(alias, label, ?descr, ?sprite, ?tags, ?link, ?type)
+' Person(users, "User", "People of University, Applied Sciences, and other Workers")
+' Person(admin, "Site Administrator", "Handles Development and Maintenance")
+
+' The Ext Systems
+' System_Ext(alias, label, ?descr, ?sprite, ?tags, ?link, ?type, ?baseShape)
+' System_Ext(rests, "AI verification Service", "Content regarding menus")
+' System_Ext(weath, "Weather", "Current weather information in Finland")
+' System_Ext(bus, "Public Transport", "Bus Schedules in Lappeenranta Routes 1(X),2,3K,4,5,7,8")
+
+' Boundary(alias, label, ?type, ?tags, ?link, ?descr)
+Boundary(mobile_device, "Backend server", "Backend System", "", "", "Server that handles data transfer between devices and other services") {
+    
+    Component(RH, "Request Handler") 
+    Component(Backend_API, "Other services API handler") 
+    Component(Blockchain, "Blockchain")
+    Component(Biometric_AI, "User authentication API handler")  
+    Component(eID, "User blockchain information") 
+    Component(DB, "Database") 
+
+    Rel(RH, Backend_API, "Sends authentication comfirmation")
+    Rel_L(Backend_API, RH, "Asks authentication")
+    Rel(Blockchain, eID, "holds")
+    Rel(RH, Biometric_AI, "Asks Biometric authentication")
+    Rel(Biometric_AI, RH, "allows or denies access")
+    Rel_R(RH, DB, "Asks database for user's blockchain identification information")
+    Rel(DB, RH, "Returns query")
+    Rel(DB, Blockchain, "Queries for correct blockchain piece")
+    Rel(Blockchain, DB, "User's blockchain identification information")
+}
+
+' Rel($from, $to, $label, $techn="", $descr="", $sprite="", $tags="", $link="", $index="", $rel="")
+' Rel(citizens, phoneapp, "Authenticates", "")
+' Rel(users, website, "Views the content")
+' Rel(admin, webapp, "Maintains")
+
+' Shows connection to server 
+' Rel(rests, webapp, "Provides content through API")
+' Rel(weath, webapp, "Provides content through API")
+' Rel(bus, webapp, "Provides content through API")
+
+@enduml
