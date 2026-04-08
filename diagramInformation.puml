@@ -19,16 +19,16 @@ Boundary(boundary, "Internal system") {
     component Blockchain as bc
 
     interface "Request Handler (REST)" as rhr
-    interface "Query API (RMC)" as rhq 
-    interface "Request Handler API (RMC)" as rhc
+    interface "Query API (RPC)" as rhq 
+    interface "Request Handler API (RPC)" as rhc
 
     interface "Load Balancer API (REST)" as lbc 
 
     interface "Database API (TCP)" as dbc
 
-    interface "Challenge Generator (RMC)" as cgc
+    interface "Challenge Generator (RPC)" as cgc
 
-    interface "Blockchain API (HTTPs)" as bcc
+    interface "Blockchain API (HTTPS)" as bcc
 
     interface "DID API (REST)" as dida
 
