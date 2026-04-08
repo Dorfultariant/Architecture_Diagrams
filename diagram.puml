@@ -69,34 +69,34 @@ vw -(0)- ma : reads/writes file
     }
     artifact 
     {
-        BackgroundColor #f57ed1
+        BackgroundColor #daf7b5
     }
     cloud {
-        BackgroundColor #f1d8a3
+        BackgroundColor #f2f3f3
     }
     file {
-        BackgroundColor #a3abf1
+        BackgroundColor #f1a3a3
     }
     database {
         BackgroundColor #bfeeee
     }
     package {
-        BackgroundColor #afafaf
+        BackgroundColor #ffffea
     }
     node {
-        BackgroundColor #eec8bf
+        BackgroundColor #c8d4e4
     }
 </style> 
 
 legend 
     The LEGEND
 
-    | <#f57ed1> | Artifact |
-    | <#a3abf1> | File |
-    | <#eec8bf> | Node |
-    | <#f1d8a3> | Cloud |
+    | <#daf7b5> | Artifact |
+    | <#f1a3a3> | File |
+    | <#c8d4e4> | Node |
+    | <#f2f3f3> | Cloud |
     | <#bfeeee> | Database |
-    | <#afafaf> | Package |
+    | <#ffffea> | Package |
     | -(0)- | Connection |
 
 endlegend
