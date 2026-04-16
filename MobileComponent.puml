@@ -1,7 +1,7 @@
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
-Container(backend, "Server", "JSON/HTTPS", "Handles API calls and data flow between different systems.")
+Container_Ext(backend, "Centralized Server", "JSON/HTTPS", "Handles API calls and data flow between different systems.")
 
 ' Boundary(alias, label, ?type, ?tags, ?link, ?descr)
 Boundary(mobile_dev, "Mobile Application", "client-side System", "", "", "Handles users data on the device and identifies user using AI model.") {

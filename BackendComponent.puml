@@ -5,13 +5,13 @@ System_Ext(bc, "Blockchain")
 System_Ext(ma, "Mobile Application")
 System_Ext(pa, "Public Administrator / Service Provider")
 
-Boundary(backend, "Server", "Backend System", "", "", "Server that handles data transfer between systems.") {
+Boundary(backend, "Centralized Server", "Backend System", "", "", "Server that handles data transfer between systems.") {
   ' Component(alias, label, ?techn, ?descr, ?sprite, ?tags, ?link, ?baseShape)
     Component(RH, "Request Handler") 
     Component(challenger, "Challenge Generator") 
     Component(ext_api, "External API", "", "Provide PAs the API for communication with internal system.") 
     Component(resolver, "DID Resolver", "", "Resolves users DID to correct Public Key in blockchain.") 
-    Component(DB, "Database", "PostgreSQL", "Stores revoked keys and audit logs.") 
+    Component(DB, "Database Handler", "", "Provides the API for database queries.") 
     Component(at, "Audit Logger", "", "Handles the read and write operations of audit logging data for transactions.") 
 
     Rel(RH, challenger, "generates a challenge using")
@@ -19,7 +19,7 @@ Boundary(backend, "Server", "Backend System", "", "", "Server that handles data 
     Rel(ext_api, RH, "redirects data to")
     Rel_U(pa, ext_api, "connects to the server instance")
     Rel(RH, ma, "communication with")
-    Rel_U(RH, DB, "checks for revoked keys from")
+    Rel_U(RH, DB, "queries via")
     Rel_R(RH, resolver, "requests public key from")
     Rel(resolver, bc, "queries for correct blockchain piece")
 }
